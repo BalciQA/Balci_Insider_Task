@@ -18,8 +18,6 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
-
-    public WebDriver driver;
     protected ExtentReports report;
     protected ExtentHtmlReporter htmlReporter;
     protected ExtentTest extentLogger;
@@ -40,16 +38,11 @@ public class TestBase {
 
     }
 
-
-
-
     @BeforeMethod
     public void setupMethod() {
-        driver = Driver.getDriver();
-        driver.get(ConfigurationReader.get("url"));
+        Driver.getDriver().get(ConfigurationReader.get("url"));
         BrowserUtils.waitFor(2);
         new DashboardPage().cookies.click();
-
     }
 
     @AfterMethod
@@ -61,12 +54,11 @@ public class TestBase {
             extentLogger.fail(result.getThrowable());
         }
             Thread.sleep(2000);
-            driver.close();
+            Driver.closeDriver();
     }
 
     @AfterTest
     public void tearDownTest() {
-
         report.flush();
     }
 }

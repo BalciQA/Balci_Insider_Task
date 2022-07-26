@@ -14,19 +14,19 @@ import java.util.Set;
 
 public class testPage extends TestBase {
 
-    DashboardPage insiderPage = new DashboardPage();
     SoftAssert softAssert = new SoftAssert();
 
     @Test
     public void openedPage(){
         extentLogger=report.createTest("testCase1");
-        System.out.println(driver.getCurrentUrl());
-        Assert.assertEquals(driver.getCurrentUrl(),"https://useinsider.com/");
+        System.out.println(Driver.getDriver().getCurrentUrl());
+        Assert.assertEquals(Driver.getDriver().getCurrentUrl(),"https://useinsider.com/");
         extentLogger.pass("Test Passed");
     }
 
     @Test
     public void checkCareerPage() {
+        DashboardPage insiderPage = new DashboardPage();
         extentLogger=report.createTest("testCase2");
         BrowserUtils.waitFor(2);
         BrowserUtils.clickWithJS(insiderPage.moreButton);
@@ -46,8 +46,9 @@ public class testPage extends TestBase {
 
     @Test
     public void seeAllTeamsPage(){
+        DashboardPage insiderPage = new DashboardPage();
         extentLogger=report.createTest("testCase3");
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(3);
         BrowserUtils.clickWithJS(insiderPage.moreButton);
 
         BrowserUtils.waitForPresenceOfElement(insiderPage.careerButton);
@@ -65,10 +66,9 @@ public class testPage extends TestBase {
         BrowserUtils.waitForPresenceOfElement(insiderPage.dropDownButtonForLocations);
         insiderPage.dropDownButtonForLocations.click();
         BrowserUtils.waitForPresenceOfElement(insiderPage.Istanbul);
-
         insiderPage.Istanbul.click();
-        insiderPage.dropDownButtonForDepartment.click();
 
+        insiderPage.dropDownButtonForDepartment.click();
         BrowserUtils.waitFor(2);
         insiderPage.QA.click();
 
@@ -86,8 +86,10 @@ public class testPage extends TestBase {
     @Test
     public void jobsFiltered() throws InterruptedException {
 
+        DashboardPage insiderPage = new DashboardPage();
+
         extentLogger=report.createTest("testCase4");
-        BrowserUtils.waitFor(2);
+        BrowserUtils.waitFor(3);
         BrowserUtils.clickWithJS(insiderPage.moreButton);
 
         BrowserUtils.waitForPresenceOfElement(insiderPage.careerButton);

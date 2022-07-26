@@ -2,6 +2,7 @@ package Insider_Task.Utilities;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -47,11 +48,11 @@ public class BrowserUtils {
         w.until(ExpectedConditions.visibilityOf(webElement));
     }
 
-
-
     public static void clickWithJS(WebElement element) {
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].scrollIntoView(true);", element);
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("window.scrollBy(0,1000)");
         ((JavascriptExecutor) Driver.getDriver()).executeScript("arguments[0].click();", element);
+
     }
 
     public static String getScreenshot(String name) throws IOException {
@@ -63,7 +64,5 @@ public class BrowserUtils {
         FileUtils.copyFile(source, finalDestination);
         return target;
     }
-
-
 
 }
